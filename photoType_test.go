@@ -65,6 +65,14 @@ func TestPhotoType_UnmarshalJSON(t *testing.T) {
 			want:    "",
 			wantErr: true,
 		},
+		{
+			name: "wrong input type",
+			args: args{
+				bs: []byte(`[]`),
+			},
+			want:    "",
+			wantErr: true,
+		},
 	}
 
 	for _, tt := range tests {
