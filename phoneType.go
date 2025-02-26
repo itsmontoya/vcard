@@ -1,6 +1,9 @@
 package vcf
 
-import "fmt"
+import (
+	"encoding/json"
+	"fmt"
+)
 
 const (
 	PhoneTypeCell  PhoneType = "CELL"  // Mobile/Cell phone
@@ -42,4 +45,19 @@ func (p PhoneType) Validate() (err error) {
 	}
 
 	return nil
+}
+
+func (p *PhoneType) UnmarshalJSON(bs []byte) (err error) {
+	var str string
+	if err = json.Unmarshal(bs, &str); err != nil {
+		return
+	}
+
+	pt := PhoneType(str)
+	if err = pt.Validate(); err != nil {
+		return
+	}
+
+	*p = pt
+	return
 }
