@@ -33,7 +33,12 @@ func TestContact_VCF(t *testing.T) {
 				Country:         "",
 			},
 
-			wantOut: "",
+			wantOut: `BEGIN:VCARD
+VERSION:3.0
+FN:John Doe
+N:Doe;John;;;
+TEL;TYPE=CELL:+13034567890
+END:VCARD`,
 			wantErr: false,
 		},
 	}
