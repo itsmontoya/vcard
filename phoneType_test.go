@@ -130,6 +130,14 @@ func TestPhoneType_UnmarshalJSON(t *testing.T) {
 			want:    "PCS",
 			wantErr: false,
 		},
+		{
+			name: "foo",
+			args: args{
+				bs: []byte(`"FOO"`),
+			},
+			want:    "",
+			wantErr: true,
+		},
 	}
 
 	for _, tt := range tests {
