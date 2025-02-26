@@ -1,6 +1,9 @@
 package vcf
 
-import "fmt"
+import (
+	"encoding/json"
+	"fmt"
+)
 
 const (
 	PhotoTypeJPEG PhotoType = "JPEG" // image/jpeg
@@ -24,4 +27,19 @@ func (p PhotoType) Validate() (err error) {
 	}
 
 	return nil
+}
+
+func (p *PhotoType) UnmarshalJSON(bs []byte) (err error) {
+	var str string
+	if err = json.Unmarshal(bs, &str); err != nil {
+		return
+	}
+
+	pt := PhotoType(str)
+	if err = pt.Validate(); err != nil {
+		return
+	}
+
+	*p = pt
+	return
 }
