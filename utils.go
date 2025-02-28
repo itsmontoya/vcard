@@ -1,4 +1,4 @@
-package vcf
+package vcard
 
 import (
 	"bytes"
