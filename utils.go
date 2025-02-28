@@ -1,6 +1,10 @@
 package vcf
 
-import "bytes"
+import (
+	"bytes"
+	"fmt"
+	"text/template"
+)
 
 func containsNotEmpty(vals ...string) bool {
 	for _, v := range vals {
@@ -19,5 +23,14 @@ func getOutput(v any) (out string, err error) {
 	}
 
 	out = buf.String()
+	return
+}
+
+func getParsed(tmpl string) (out *template.Template, err error) {
+	if out, err = parsed.Parse(tmpl); err != nil {
+		err = fmt.Errorf("error parsing template: %v", err)
+		return
+	}
+
 	return
 }
