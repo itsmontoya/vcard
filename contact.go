@@ -1,7 +1,6 @@
 package vcf
 
 import (
-	"bytes"
 	"errors"
 )
 
@@ -82,11 +81,6 @@ func (c *Contact) VCF() (out string, err error) {
 		return
 	}
 
-	buf := bytes.NewBuffer(nil)
-	if err = parsed.Execute(buf, c); err != nil {
-		return
-	}
-
-	out = buf.String()
+	out, err = getOutput(c)
 	return
 }

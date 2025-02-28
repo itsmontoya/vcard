@@ -1,9 +1,6 @@
 package vcf
 
-import (
-	"fmt"
-	"text/template"
-)
+import "text/template"
 
 const tmpl = `BEGIN:VCARD
 VERSION:3.0
@@ -29,8 +26,7 @@ func init() {
 		"contains": containsNotEmpty,
 	})
 
-	if parsed, err = parsed.Parse(tmpl); err != nil {
-		msg := fmt.Sprintf("vcf.init(): error parsing template: %v\n", err)
-		panic(msg)
+	if parsed, err = getParsed(tmpl); err != nil {
+		panic(err)
 	}
 }

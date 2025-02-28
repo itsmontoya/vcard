@@ -41,6 +41,34 @@ TEL;TYPE=CELL:+13034567890
 END:VCARD`,
 			wantErr: false,
 		},
+		{
+			name: "errors",
+			c: Contact{
+				FullName:        "",
+				Prefix:          "",
+				FirstName:       "John",
+				MiddleName:      "",
+				LastName:        "Doe",
+				Suffix:          "",
+				PhoneNumber:     "+13034567890",
+				PhoneType:       "",
+				Email:           "",
+				Organization:    "",
+				StreetAddress:   "",
+				ExtendedAddress: "",
+				City:            "",
+				State:           "",
+				PostalCode:      "",
+				Country:         "",
+				URL:             "82s091://",
+				Birthday:        "20-20005-12",
+				PhotoURL:        "82s091://",
+				PhotoType:       "foo",
+			},
+
+			wantOut: ``,
+			wantErr: true,
+		},
 	}
 
 	for _, tt := range tests {
